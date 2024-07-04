@@ -1,0 +1,50 @@
+class Bakery:
+    def __init__(self, name, location):
+        self.name = name
+        self.location = location
+        self.inventory = {}
+
+    def add_item_to_inventory(self, item_name, quantity):
+        if item_name in self.inventory:
+            self.inventory[item_name] += quantity
+        else:
+            self.inventory[item_name] = quantity
+
+    def remove_item_from_inventory(self, item_name, quantity):
+        if item_name in self.inventory:
+            if self.inventory[item_name] >= quantity:
+                self.inventory[item_name] -= quantity
+            else:
+                print(f"Not enough {item_name} in inventory at {self.location}")
+        else:
+            print(f"{item_name} not found in inventory at {self.location}")
+
+    def update_inventory(self, item_name, new_quantity):
+        self.inventory[item_name] = new_quantity
+
+    def display_inventory(self):
+        print(f"Inventory at {self.location}:")
+        for item, quantity in self.inventory.items():
+            print(f"{item}: {quantity}")
+
+# Creating bakery locations
+bakery_location1 = Bakery("Bakery A", "Location 1")
+bakery_location2 = Bakery("Bakery B", "Location 2")
+
+# Adding items to inventory
+bakery_location1.add_item_to_inventory("Croissant", 50)
+bakery_location1.add_item_to_inventory("Baguette", 100)
+bakery_location2.add_item_to_inventory("Donut", 75)
+bakery_location2.add_item_to_inventory("Muffin", 60)
+
+# Displaying inventory
+bakery_location1.display_inventory()
+bakery_location2.display_inventory()
+
+# Updating inventory levels
+bakery_location1.update_inventory("Croissant", 60)
+bakery_location2.update_inventory("Donut", 80)
+
+# Displaying updated inventory
+bakery_location1.display_inventory()
+bakery_location2.display_inventory()
